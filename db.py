@@ -1,9 +1,16 @@
-import sqlite3
-from interface import App
+import sqlite3      # Библиотека для работы с БД
 
 
 db = sqlite3.connect('db.db')
 sql = db.cursor()
+sql.execute("""CREATE TABLE IF NOT EXISTS Employee (
+    ID                      INTEGER PRIMARY KEY,
+    name_surname_patronymic TEXT    NOT NULL,
+    phone                   TEXT,
+    email                   TEXT,
+    salary                  REAL    NOT NULL
+);""")
+db.commit()
 
 
 def add_employee(name_surname_patronymic: str, phone: str, email: str, salary: int) -> None:
